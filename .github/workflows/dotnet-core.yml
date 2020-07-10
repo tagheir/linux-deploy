@@ -37,9 +37,40 @@ jobs:
     - name: Copy to Deployment Folder
       uses: garygrossgarten/github-action-ssh@release
       with:
-        command: sudo systemctl stop hello && sudo rm -R '/var/www/project_output' && sudo cp -R '~/output' '/var/www/project_output' && sudo rm -R '~/output' && sudo systemctl stop hello
+        command: sudo systemctl stop hello 
         host: '3.83.101.195'
         username: 'ubuntu'
         password: 'pak123lahore'
-
-      
+        
+    - name: Copy to Deployment Folder
+      uses: garygrossgarten/github-action-ssh@release
+      with:
+        command: sudo rm -R '/var/www/project_output' 
+        host: '3.83.101.195'
+        username: 'ubuntu'
+        password: 'pak123lahore'
+        
+    - name: Copy to Deployment Folder
+      uses: garygrossgarten/github-action-ssh@release
+      with:
+        command: sudo cp -R '/home/ubuntu/output' '/var/www/project_output' 
+        host: '3.83.101.195'
+        username: 'ubuntu'
+        password: 'pak123lahore'
+        
+    - name: Copy to Deployment Folder
+      uses: garygrossgarten/github-action-ssh@release
+      with:
+        command: sudo rm -R '/home/ubuntu/output'
+        host: '3.83.101.195'
+        username: 'ubuntu'
+        password: 'pak123lahore'
+        
+    - name: Copy to Deployment Folder
+      uses: garygrossgarten/github-action-ssh@release
+      with:
+        command: sudo systemctl stop hello
+        host: '3.83.101.195'
+        username: 'ubuntu'
+        password: 'pak123lahore'
+        
