@@ -24,10 +24,13 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore --output ./output
   
-    
     - name: Deploy
-      shell: bash
-      run: |
-        sudo apt-get install sshpass 
-        sshpass -p 'pak123lahore' scp ./output ubuntu@3.83.101.195:~/program_build
+      uses: garygrossgarten/github-action-scp@release
+      with:
+        local: ./output
+        remote: scp/home/ubuntu/output
+        host: '3.83.101.195'
+        username: 'ubuntu'
+        password: 'pak123lahore'
+    
       
