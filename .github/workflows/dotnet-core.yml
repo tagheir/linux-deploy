@@ -28,9 +28,18 @@ jobs:
       uses: garygrossgarten/github-action-scp@release
       with:
         local: ./output
-        remote: /var/www/output
+        remote: output
         host: '3.83.101.195'
         username: 'ubuntu'
         password: 'pak123lahore'
-    
+        
+        
+    - name: Copy to Deployment Folder
+      uses: garygrossgarten/github-action-ssh@release
+      with:
+        command: sudo rm -R '/var/www/project_output' && sudo cp -R '~/output' '/var/www/project_output' && sudo rm -R '~/output'
+        host: '3.83.101.195'
+        username: 'ubuntu'
+        password: 'pak123lahore'
+
       
