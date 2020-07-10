@@ -29,5 +29,5 @@ jobs:
       shell: bash
       run: |
         sudo apt-get install sshpass 
-        sshpass -p 'pak123lahore' scp ./output ubuntu@3.83.101.195:~/var/www/program_build
+        sshpass -p 'pak123lahore' scp ./output ubuntu@3.83.101.195:~/program_build
       
