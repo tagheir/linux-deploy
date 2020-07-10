@@ -9,7 +9,7 @@ namespace ConsoleApp4
         {
             while (true)
             {
-                Console.WriteLine("Hello World! --- AGINg TEST " + DateTime.Now);
+                Console.WriteLine("Hello World! --- " + DateTime.Now);
                 Thread.Sleep(5000);
             }
         }
