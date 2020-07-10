@@ -69,7 +69,7 @@ jobs:
     - name: Copy to Deployment Folder
       uses: garygrossgarten/github-action-ssh@release
       with:
-        command: sudo systemctl stop hello
+        command: sudo systemctl start hello
         host: '3.83.101.195'
         username: 'ubuntu'
         password: 'pak123lahore'
