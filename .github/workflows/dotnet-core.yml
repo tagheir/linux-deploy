@@ -25,6 +25,10 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore --output ./output
   
+    - name: SSH Deploy
+      shell: bash
+      run: scp ./output ubuntu@52.255.173.7:~/output
+        
     - name: Deploy
       uses: garygrossgarten/github-action-scp@release
       with:
