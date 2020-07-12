@@ -14,14 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setup SSH Keys and known_hosts
-      env:
-            SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-      run: |
-            mkdir -p ~/.ssh
-            ssh-keyscan github.com >> ~/.ssh/known_hosts
-            ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-            ssh-add - <<< "${{ secrets.DEPLOY_KEY }}"
     
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
@@ -36,7 +28,7 @@ jobs:
   
     - name: SSH Deploy
       shell: bash
-      run: scp ./output ubuntu@52.255.173.7:~/output
+      run: scp -i ${{secrets.LINUX_DEPLOY_KEY}} ./output ubuntu@52.255.173.7:~/output
         
     - name: Deploy
       uses: garygrossgarten/github-action-scp@release
