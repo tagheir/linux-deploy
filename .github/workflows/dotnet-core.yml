@@ -28,7 +28,7 @@ jobs:
   
     - name: SSH Deploy
       shell: bash
-      run: scp -i ${{secrets.LINUX_DEPLOY_KEY}} ./output ubuntu@52.255.173.7:~/output
+      run: scp ./output ubuntu@52.255.173.7:~/output
         
     - name: Deploy
       uses: garygrossgarten/github-action-scp@release
