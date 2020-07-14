@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  IP_ADDRESS: '3.83.101.195'
+  USERNAME: 'ubuntu'
+  PASSWORD: 'pak123lahore'
+  
 jobs:
   build:
 
@@ -31,11 +36,31 @@ jobs:
       run: |
         sudo apt-get install sshpass
         tar -cvf ./output/tar.tar ./output/*
-        sshpass -p 'pak123lahore' scp ./output.tar ubuntu@3.83.101.195:/home/ubuntu/output.tar
-        sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "tar -xvf ~/output.tar"
-        sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "sudo systemctl stop hello"
-        sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "sudo rm -R '/var/www/project_output'"
-        sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "sudo cp -R '/home/ubuntu/output' '/var/www/project_output' "
-        sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "sudo rm -R '/home/ubuntu/output'"
-        sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "sudo systemctl start hello"   
+        sshpass -p ${{ env.PASSWORD }} scp ./output.tar ubuntu@3.83.101.195:/home/ubuntu/output.tar
+        
+    - name: SSH Deploy
+      shell: bash
+      run: |
+        sshpass -p ${{ env.PASSWORD }} ssh ${{ env.USERNAME }}@${{ env.IP_ADDRESS }} "sudo systemctl stop hello"
+        
+    - name: SSH Deploy
+      shell: bash
+      run: |
+        sshpass -p ${{ env.PASSWORD }} ssh ${{ env.USERNAME }}@${{ env.IP_ADDRESS }} "sudo rm -R '/var/www/project_output'"
+        
+    - name: SSH Deploy
+      shell: bash
+      run: |
+        sshpass -p ${{ env.PASSWORD }} ssh ${{ env.USERNAME }}@${{ env.IP_ADDRESS }} "sudo cp -R '/home/ubuntu/output' '/var/www/project_output' "
+        
+    - name: SSH Deploy
+      shell: bash
+      run: |
+        sshpass -p ${{ env.PASSWORD }} ssh ${{ env.USERNAME }}@${{ env.IP_ADDRESS }} "sudo rm -R '/home/ubuntu/output'"
+        
+    - name: SSH Deploy
+      shell: bash
+      run: |
+        sshpass -p ${{ env.PASSWORD }} ssh ${{ env.USERNAME }}@${{ env.IP_ADDRESS }} "sudo systemctl start hello"   
+          
         
