@@ -35,7 +35,7 @@ jobs:
       shell: bash
       run: |
         sudo apt-get install sshpass
-        tar -cvf ./output/tar.tar ./output/*
+        tar -cvf ./output.tar ./output/*
         sshpass -p ${{ env.PASSWORD }} scp ./output.tar ubuntu@3.83.101.195:/home/ubuntu/output.tar
         
     - name: SSH Deploy
