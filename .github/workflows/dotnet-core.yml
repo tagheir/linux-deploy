@@ -29,56 +29,10 @@ jobs:
     - name: SSH Deploy
       shell: bash
       run: |
-        sudo apt-get install sshpass
-        sshpass -p 'pak123lahore' scp ./output ubuntu@52.255.173.7:~/output2
-        
-    - name: Deploy
-      uses: garygrossgarten/github-action-scp@release
-      with:
-        local: ./output
-        remote: output
-        host: '3.83.101.195'
-        username: 'ubuntu'
-        password: 'pak123lahore'
-        
-        
-    - name: Copy to Deployment Folder
-      uses: garygrossgarten/github-action-ssh@release
-      with:
-        command: sudo systemctl stop hello 
-        host: '3.83.101.195'
-        username: 'ubuntu'
-        password: 'pak123lahore'
-        
-    - name: Copy to Deployment Folder
-      uses: garygrossgarten/github-action-ssh@release
-      with:
-        command: sudo rm -R '/var/www/project_output' 
-        host: '3.83.101.195'
-        username: 'ubuntu'
-        password: 'pak123lahore'
-        
-    - name: Copy to Deployment Folder
-      uses: garygrossgarten/github-action-ssh@release
-      with:
-        command: sudo cp -R '/home/ubuntu/output' '/var/www/project_output' 
-        host: '3.83.101.195'
-        username: 'ubuntu'
-        password: 'pak123lahore'
-        
-    - name: Copy to Deployment Folder
-      uses: garygrossgarten/github-action-ssh@release
-      with:
-        command: sudo rm -R '/home/ubuntu/output'
-        host: '3.83.101.195'
-        username: 'ubuntu'
-        password: 'pak123lahore'
-        
-    - name: Copy to Deployment Folder
-      uses: garygrossgarten/github-action-ssh@release
-      with:
-        command: sudo systemctl start hello
-        host: '3.83.101.195'
-        username: 'ubuntu'
-        password: 'pak123lahore'
+        sshpass -p 'pak123lahore' scp ./output ubuntu@3.83.101.195:~/output2
+        sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "sudo systemctl stop hello"
+        sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "sudo rm -R '/var/www/project_output'"
+        sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "sudo cp -R '/home/ubuntu/output' '/var/www/project_output' "
+        sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "sudo rm -R '/home/ubuntu/output'"
+        sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "sudo systemctl start hello"   
         
