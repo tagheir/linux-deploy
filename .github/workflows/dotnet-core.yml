@@ -30,8 +30,9 @@ jobs:
       shell: bash
       run: |
         sudo apt-get install sshpass
-        tar -cvf ./output/tar.tar ./output.tar
+        tar -cvf ./output/tar.tar ./output/*
         sshpass -p 'pak123lahore' scp ./output.tar ubuntu@3.83.101.195:/home/ubuntu/output.tar
+        sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "tar -xvf ~/output.tar"
         sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "sudo systemctl stop hello"
         sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "sudo rm -R '/var/www/project_output'"
         sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "sudo cp -R '/home/ubuntu/output' '/var/www/project_output' "
