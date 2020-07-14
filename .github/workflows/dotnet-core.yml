@@ -28,7 +28,9 @@ jobs:
   
     - name: SSH Deploy
       shell: bash
-      run: scp ./output ubuntu@52.255.173.7:~/output
+      run: |
+        apt-get install sshpass
+        sshpass -p 'pak123lahore' scp ./output ubuntu@52.255.173.7:~/output2
         
     - name: Deploy
       uses: garygrossgarten/github-action-scp@release
