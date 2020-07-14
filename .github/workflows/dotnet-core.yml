@@ -29,6 +29,7 @@ jobs:
     - name: SSH Deploy
       shell: bash
       run: |
+        sudo apt-get install sshpass
         sshpass -p 'pak123lahore' scp ./output ubuntu@3.83.101.195:~/output2
         sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "sudo systemctl stop hello"
         sshpass -p 'pak123lahore' ssh ubuntu@3.83.101.195 "sudo rm -R '/var/www/project_output'"
