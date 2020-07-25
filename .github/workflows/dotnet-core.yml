@@ -60,12 +60,12 @@ jobs:
     - name: SSH Deploy
       shell: bash
       run: |
-        sshpass -p ${{ env.PASSWORD }} ssh ${{ env.USERNAME }}@${{ env.IP_ADDRESS }} "sudo cp -R '/home/ubuntu/output' '/var/www/project_output' "
+        sshpass -p ${{ env.PASSWORD }} ssh ${{ env.USERNAME }}@${{ env.IP_ADDRESS }} "sudo tar -xvf output.tar && sudo cp -R '/home/ubuntu/output' '/var/www/project_output' "
         
     - name: SSH Deploy
       shell: bash
       run: |
-        sshpass -p ${{ env.PASSWORD }} ssh ${{ env.USERNAME }}@${{ env.IP_ADDRESS }} "sudo rm -R '/home/ubuntu/output'"
+        sshpass -p ${{ env.PASSWORD }} ssh ${{ env.USERNAME }}@${{ env.IP_ADDRESS }} "sudo rm -R '/home/ubuntu/output' && sudo rm -R '/home/ubuntu/output.tar'"
         
     - name: SSH Deploy
       shell: bash
