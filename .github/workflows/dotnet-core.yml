@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 env:
-  IP_ADDRESS: '3.83.101.195'
+  IP_ADDRESS: '3.93.80.207'
   USERNAME: 'ubuntu'
   PASSWORD: 'pak123lahore'
   
@@ -31,12 +31,20 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore --output ./output
   
+  
+    - name: SSH Key Settings
+      shell: bash
+      run: |
+        echo `ssh-keyscan -t rsa ${{ env.IP_ADDRESS }}` >> ./.ssh/known_hosts
+        sort ./.ssh/known_hosts | uniq -u >  ./.ssh/known_hosts
+        echo `ssh-keyscan -t rsa ${{ env.IP_ADDRESS }}` >> ./.ssh/known_hosts
+  
     - name: SSH Deploy
       shell: bash
       run: |
         sudo apt-get install sshpass
         tar -cvf ./output.tar ./output/*
-        sshpass -p ${{ env.PASSWORD }} scp ./output.tar ubuntu@3.83.101.195:/home/ubuntu/output.tar
+        sshpass -p ${{ env.PASSWORD }} scp ./output.tar ubuntu@${{ env.IP_ADDRESS }}:/home/ubuntu/output.tar
         
     - name: SSH Deploy
       shell: bash
