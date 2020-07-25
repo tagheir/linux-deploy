@@ -35,9 +35,9 @@ jobs:
     - name: SSH Key Settings
       shell: bash
       run: |
-        echo `ssh-keyscan -t rsa ${{ env.IP_ADDRESS }}` >> ./.ssh/known_hosts
-        sort ./.ssh/known_hosts | uniq -u >  ./.ssh/known_hosts
-        echo `ssh-keyscan -t rsa ${{ env.IP_ADDRESS }}` >> ./.ssh/known_hosts
+        echo `ssh-keyscan -t rsa ${{ env.IP_ADDRESS }}` >> ~/.ssh/known_hosts
+        sort ~/.ssh/known_hosts | uniq -u >  ~/.ssh/known_hosts
+        echo `ssh-keyscan -t rsa ${{ env.IP_ADDRESS }}` >> ~/.ssh/known_hosts
   
     - name: SSH Deploy
       shell: bash
