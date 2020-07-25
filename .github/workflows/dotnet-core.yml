@@ -55,7 +55,7 @@ jobs:
     - name: SSH Deploy
       shell: bash
       run: |
-        sshpass -p ${{ env.PASSWORD }} ssh ${{ env.USERNAME }}@${{ env.IP_ADDRESS }} "sudo rm -R '/var/www/project_output'"
+        sshpass -p ${{ env.PASSWORD }} ssh ${{ env.USERNAME }}@${{ env.IP_ADDRESS }} "sudo mkdir -p '/var/www/project_output' && sudo rm -R '/var/www/project_output'"
         
     - name: SSH Deploy
       shell: bash
