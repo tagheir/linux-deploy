@@ -11,6 +11,9 @@ env:
   USERNAME: 'ubuntu'
   PASSWORD: 'pak123lahore'
   KEY_VAULT_URL: 'https://naveenesb.vault.azure.net/'
+  TENANT_ID: 'de6d6ed2-8af3-4ed5-9e6d-a0e6c9c8bd68'
+  CLIENT_ID: 'e66b63ed-811d-4b5e-93c1-ca5d35b21e25'
+  CLIENT_SECRET: 'zpvAGx17Nagm21fbS3TX_d1.9q-tv.Pbob'
   
 jobs:
   build:
@@ -32,6 +35,12 @@ jobs:
       run: |
         str=$(echo ${{ env.KEY_VAULT_URL }} | awk '{gsub("[/]", "\\/", $0)}{print $0}')
         sed -i "s/KEY_VAULT_URL/$str/g" app.template.config
+        str=$(echo ${{ env.TENANT_ID }} | awk '{gsub("[/]", "\\/", $0)}{print $0}')
+        sed -i "s/TENANT_ID/$str/g" app.template.config
+        str=$(echo ${{ env.CLIENT_ID }} | awk '{gsub("[/]", "\\/", $0)}{print $0}')
+        sed -i "s/CLIENT_ID/$str/g" app.template.config
+        str=$(echo ${{ env.CLIENT_SECRET }} | awk '{gsub("[/]", "\\/", $0)}{print $0}')
+        sed -i "s/CLIENT_SECRET/$str/g" app.template.config
         cat app.template.config
         cp -f app.template.config App.config 
     
