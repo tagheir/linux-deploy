@@ -31,7 +31,7 @@ jobs:
       shell: bash
       run: |
         str=$(echo ${{ env.KEY_VAULT_URL }} | awk '{gsub("[/]", "\\/", $0)}{print $0}')
-        sed -i 's/KEY_VAULT_URL/$url/g' app.template.config
+        sed -i "s/KEY_VAULT_URL/$str/g" app.template.config
         cat app.template.config
         cp -f app.template.config App.config 
     
