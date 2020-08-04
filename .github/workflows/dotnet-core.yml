@@ -10,6 +10,7 @@ env:
   IP_ADDRESS: '3.93.80.207'
   USERNAME: 'ubuntu'
   PASSWORD: 'pak123lahore'
+  KEY_VAULT_URL: 'https://naveenesb.vault.azure.net/'
   
 jobs:
   build:
@@ -24,6 +25,15 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
+    
+    
+    - name: Update Configutations
+      shell: bash
+      run: |
+        str=${{ env.KEY_VAULT_URL }}
+        sed -i 's/KEY_VAULT_URL/$url/g' app.template.config
+        cat app.template.config
+        cp -f app.template.config App.config 
     
     - name: Install dependencies
       run: dotnet restore
