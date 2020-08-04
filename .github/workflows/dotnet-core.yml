@@ -41,9 +41,9 @@ jobs:
         str=$(echo ${{ env.CLIENT_ID }} | awk '{gsub("[/]", "\\/", $0)}{print $0}')
         sed -i "s/CLIENT_ID/$str/g" app.template.config
         str=$(echo ${{ env.CLIENT_SECRET }} | awk '{gsub("[/]", "\\/", $0)}{print $0}')
-        sed -i "s/CLIENT_SECRET/$str/g" app.template.config
-        cat app.template.config
+        sed -i "s/CLIENT_SECRET/$str/g" app.template.config        
         cp -f app.template.config App.config 
+        cat App.config
     
     - name: Install dependencies
       run: dotnet restore
