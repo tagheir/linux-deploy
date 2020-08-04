@@ -33,7 +33,7 @@ jobs:
     - name: Update Configutations
       shell: bash
       run: |
-        cat app.template.config
+        cat App.config
         str=$(echo ${{ env.KEY_VAULT_URL }} | awk '{gsub("[/]", "\\/", $0)}{print $0}')
         sed -i "s/KEY_VAULT_URL/$str/g" app.template.config
         str=$(echo ${{ env.TENANT_ID }} | awk '{gsub("[/]", "\\/", $0)}{print $0}')
